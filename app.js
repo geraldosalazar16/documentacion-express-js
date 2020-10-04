@@ -6,8 +6,6 @@ var logger = require('morgan');
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
 
-const authMiddleware = require('./middleware/auth.middleware');
-
 var authRouter = require('./routes/auth');
 var todosRouter = require('./routes/todos');
 
@@ -23,7 +21,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-
+app.get('/*', (req, res) => res.sendFile(path.join(__dirname, 'public/index.html')));
 app.use('/auth', authRouter);
 
 // Auth Middleware

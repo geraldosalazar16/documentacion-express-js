@@ -19,7 +19,47 @@ let todos = [
   }
 ]
 
-/* GET users listing. */
+/**
+ * @api {get} /app/todos/ Obtener el listado de TODOS
+ * @apiName Listar
+ * @apiGroup Todo
+ *
+ * 
+ * @apiSampleRequest /app/todos/
+ *
+ * @apiSuccess {Number} statusCode Codigo HTTP correspondiente al resultado.
+ * @apiSuccess {Object[]} todos Listado de todos.
+ * @apiSuccessExample {json} Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *       "statusCode": "200",
+ *       "todos": [
+ *        {
+ *           id: 1,
+ *           nombre: 'Todo 1',
+ *           status: 'Pendiente'
+ *         },
+ *         {
+ *           id: 2,
+ *           nombre: 'Todo 2',
+ *           status: 'Pendiente'
+ *         },
+ *         {
+ *           id: 3,
+ *           nombre: 'Todo 3',
+ *           status: 'Completado'
+ *         }
+ *        ]
+ *     }
+ * 
+ * @apiError {Number} statusCode Codigo HTTP correspondiente al resultado.
+ * @apiError {String} message   Mensaje de error.
+ * @apiErrorExample {json} Error-Response:
+*     HTTP/1.1 401 Unauthorized
+*     {
+*       "message": "Credenciales inválidas"
+*     }
+*/
 router.get('/', function(req, res, next) {
   res.json({
     statusCode: 200,
@@ -27,7 +67,36 @@ router.get('/', function(req, res, next) {
   });
 });
 
-/* GET users listing. */
+
+/**
+ * @api {get} /app/todos/id Obtener un TODO por su id
+ * @apiName GetbyId
+ * @apiGroup Todo
+ *
+ * 
+ * @apiSampleRequest /app/todos/id
+ *
+ * @apiSuccess {Number} statusCode Codigo HTTP correspondiente al resultado.
+ * @apiSuccess {Object[]} todos Listado de todos.
+ * @apiSuccessExample {json} Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *       "statusCode": "200",
+ *       "todo": {
+ *           id: 1,
+ *           nombre: 'Todo 1',
+ *           status: 'Pendiente'
+ *         }
+ *     }
+ * 
+ * @apiError {Number} statusCode Codigo HTTP correspondiente al resultado.
+ * @apiError {String} message   Mensaje de error.
+ * @apiErrorExample {json} Error-Response:
+*     HTTP/1.1 200 Ok
+*     {
+*       "message": "The requested resource (ID ${todoId}) was not found"
+*     }
+*/
 router.get('/:id', function(req, res, next) {
   const todoId = parseInt(req.params.id);
   const todo = todos.find(todo => todo.id === todoId);
@@ -44,7 +113,36 @@ router.get('/:id', function(req, res, next) {
   }
 });
 
-/* GET users listing. */
+/**
+ * @api {post} /app/todos/id Inserta un nuevo TODO
+ * @apiName Crear
+ * @apiGroup Todo
+ *
+ * 
+ * @apiSampleRequest /app/todos/id
+ *
+ * @apiSuccess {Number} statusCode Codigo HTTP correspondiente al resultado.
+ * @apiSuccess {Object} todo TODO Insertado.
+ * @apiSuccessExample {json} Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *       "statusCode": "200",
+ *       "todo": {
+ *           id: 1,
+ *           nombre: 'Todo 1',
+ *           status: 'Pendiente'
+ *         }
+ *     }
+ * 
+ * @apiError {Number} statusCode Codigo HTTP correspondiente al resultado.
+ * @apiError {String} message   Mensaje de error.
+ * @apiErrorExample {json} Error-Response:
+*     HTTP/1.1 200 Ok
+*     {
+*         "statusCode": "400",
+*         "message": "El campo nombre es requerido"
+*     }
+*/
 router.post('/', function(req, res, next) {
   const todo = req.body;
   if (!todo.nombre) {
@@ -62,7 +160,36 @@ router.post('/', function(req, res, next) {
   })
 });
 
-/* GET users listing. */
+/**
+ * @api {put} /app/todos/id Modifica un TODO por el id
+ * @apiName Editar
+ * @apiGroup Todo
+ *
+ * 
+ * @apiSampleRequest /app/todos/id
+ *
+ * @apiSuccess {Number} statusCode Codigo HTTP correspondiente al resultado.
+ * @apiSuccess {Object} todo TODO editdo.
+ * @apiSuccessExample {json} Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *       "statusCode": "200",
+ *       "todo": {
+ *           id: 1,
+ *           nombre: 'Todo 1',
+ *           status: 'Pendiente'
+ *         }
+ *     }
+ * 
+ * @apiError {Number} statusCode Codigo HTTP correspondiente al resultado.
+ * @apiError {String} message   Mensaje de error.
+ * @apiErrorExample {json} Error-Response:
+*     HTTP/1.1 200 Ok
+*     {
+*         "statusCode": "404",
+*         "message": "The requested resource (ID 1) was not found"
+*     }
+*/
 router.put('/:id', function(req, res, next) {
   const todo = req.body;
   if (!todo.nombre) {
@@ -89,7 +216,32 @@ router.put('/:id', function(req, res, next) {
   }
 });
 
-/* GET users listing. */
+/**
+ * @api {delete} /app/todos/id Elimina un TODO por el id
+ * @apiName Editar
+ * @apiGroup Todo
+ *
+ * 
+ * @apiSampleRequest /app/todos/id
+ *
+ * @apiSuccess {Number} statusCode Codigo HTTP correspondiente al resultado.
+ * @apiSuccess {Number} removedItems Cantidad de registros eliminados.
+ * @apiSuccessExample {json} Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *       "statusCode": "200",
+ *       "removedItems": 1
+ *     }
+ * 
+ * @apiError {Number} statusCode Codigo HTTP correspondiente al resultado.
+ * @apiError {String} message   Mensaje de error.
+ * @apiErrorExample {json} Error-Response:
+*     HTTP/1.1 200 Ok
+*     {
+*         "statusCode": "404",
+*         "message": "The requested resource (ID 1) was not found"
+*     }
+*/
 router.delete('/:id', function(req, res, next) {
   const todoId = parseInt(req.params.id);
   const todoIndex = todos.findIndex(todo => todo.id === todoId);

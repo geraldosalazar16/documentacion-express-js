@@ -8,5 +8,5 @@ npm install apidoc -g
 - Agregar el template de apidoc al proyecto
 - Generar la documentación usando el comando
 ´´´
-apidoc -i routes/ -o apidoc/ -t template/
+apidoc -i routes/ -o public/ -t template/
 ´´´
