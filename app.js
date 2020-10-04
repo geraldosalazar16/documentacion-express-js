@@ -3,8 +3,12 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+require('dotenv').config();
+const jwt = require('jsonwebtoken');
 
-var indexRouter = require('./routes/index');
+const authMiddleware = require('./middleware/auth.middleware');
+
+var authRouter = require('./routes/auth');
 var todosRouter = require('./routes/todos');
 
 var app = express();
@@ -19,16 +23,40 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/todos', todosRouter);
+
+app.use('/auth', authRouter);
+
+// Auth Middleware
+app.use('/app', (req, res, next) => {
+  var token = req.headers['access-token'];
+  if (!token) {
+    res.status(401).send({
+      result: 'error',
+      message: 'No token provided.'
+    });
+  } else {
+    jwt.verify(token, process.env.APP_SECRET, (error, decoded) => {
+      if (error || !decoded) {
+        res.status(401).send({
+          result: 'error',
+          message: 'Failed to authenticate token.'
+        });
+      }
+      // User authenticated, do the stuff
+      next();
+    });
+  }
+});
+
+app.use('/app/todos', todosRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
