@@ -27,7 +27,6 @@ app.use('/auth', authRouter);
 // Auth Middleware
 app.use('/app', (req, res, next) => {
   var token = req.headers['access-token'];
-  console.log(token);
 
   if (!token) {
     res.status(401).send({
