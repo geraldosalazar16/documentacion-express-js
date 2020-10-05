@@ -20,12 +20,13 @@ let todos = [
 ]
 
 /**
- * @api {get} /app/todos/ Obtener el listado de TODOS
+ * @api {get} /app/todos Obtener el listado de TODOS
  * @apiName Listar
  * @apiGroup Todo
  *
- * 
- * @apiSampleRequest /app/todos/
+ * @apiHeader {String} access-token
+ *
+ * @apiSampleRequest /app/todos
  *
  * @apiSuccess {Number} statusCode Codigo HTTP correspondiente al resultado.
  * @apiSuccess {Object[]} todos Listado de todos.
@@ -51,7 +52,7 @@ let todos = [
  *         }
  *        ]
  *     }
- * 
+ *
  * @apiError {Number} statusCode Codigo HTTP correspondiente al resultado.
  * @apiError {String} message   Mensaje de error.
  * @apiErrorExample {json} Error-Response:
@@ -69,12 +70,12 @@ router.get('/', function(req, res, next) {
 
 
 /**
- * @api {get} /app/todos/id Obtener un TODO por su id
+ * @api {get} /app/todos/:id Obtener un TODO por su id
  * @apiName GetbyId
  * @apiGroup Todo
  *
- * 
- * @apiSampleRequest /app/todos/id
+ * @apiHeader {String} access-token
+ * @apiSampleRequest /app/todos/1
  *
  * @apiSuccess {Number} statusCode Codigo HTTP correspondiente al resultado.
  * @apiSuccess {Object[]} todos Listado de todos.
@@ -88,7 +89,7 @@ router.get('/', function(req, res, next) {
  *           status: 'Pendiente'
  *         }
  *     }
- * 
+ *
  * @apiError {Number} statusCode Codigo HTTP correspondiente al resultado.
  * @apiError {String} message   Mensaje de error.
  * @apiErrorExample {json} Error-Response:
@@ -114,12 +115,14 @@ router.get('/:id', function(req, res, next) {
 });
 
 /**
- * @api {post} /app/todos/id Inserta un nuevo TODO
+ * @api {post} /app/todos Inserta un nuevo TODO
  * @apiName Crear
  * @apiGroup Todo
  *
- * 
- * @apiSampleRequest /app/todos/id
+ * @apiHeader {String} access-token
+ * @apiParam {String} nombre Nombre
+ *
+ * @apiSampleRequest /app/todos
  *
  * @apiSuccess {Number} statusCode Codigo HTTP correspondiente al resultado.
  * @apiSuccess {Object} todo TODO Insertado.
@@ -133,7 +136,7 @@ router.get('/:id', function(req, res, next) {
  *           status: 'Pendiente'
  *         }
  *     }
- * 
+ *
  * @apiError {Number} statusCode Codigo HTTP correspondiente al resultado.
  * @apiError {String} message   Mensaje de error.
  * @apiErrorExample {json} Error-Response:
@@ -161,12 +164,14 @@ router.post('/', function(req, res, next) {
 });
 
 /**
- * @api {put} /app/todos/id Modifica un TODO por el id
+ * @api {put} /app/todos/:id Modifica un TODO por el id
  * @apiName Editar
  * @apiGroup Todo
  *
- * 
- * @apiSampleRequest /app/todos/id
+ * @apiHeader {String} access-token
+ * @apiParam {String} nombre Nombre
+ *
+ * @apiSampleRequest /app/todos/1
  *
  * @apiSuccess {Number} statusCode Codigo HTTP correspondiente al resultado.
  * @apiSuccess {Object} todo TODO editdo.
@@ -180,7 +185,7 @@ router.post('/', function(req, res, next) {
  *           status: 'Pendiente'
  *         }
  *     }
- * 
+ *
  * @apiError {Number} statusCode Codigo HTTP correspondiente al resultado.
  * @apiError {String} message   Mensaje de error.
  * @apiErrorExample {json} Error-Response:
@@ -217,12 +222,13 @@ router.put('/:id', function(req, res, next) {
 });
 
 /**
- * @api {delete} /app/todos/id Elimina un TODO por el id
+ * @api {delete} /app/todos/:id Elimina un TODO por el id
  * @apiName Editar
  * @apiGroup Todo
  *
- * 
- * @apiSampleRequest /app/todos/id
+ * @apiHeader {String} access-token
+ *
+ * @apiSampleRequest /app/todos/1
  *
  * @apiSuccess {Number} statusCode Codigo HTTP correspondiente al resultado.
  * @apiSuccess {Number} removedItems Cantidad de registros eliminados.
@@ -232,7 +238,7 @@ router.put('/:id', function(req, res, next) {
  *       "statusCode": "200",
  *       "removedItems": 1
  *     }
- * 
+ *
  * @apiError {Number} statusCode Codigo HTTP correspondiente al resultado.
  * @apiError {String} message   Mensaje de error.
  * @apiErrorExample {json} Error-Response:

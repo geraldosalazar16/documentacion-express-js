@@ -21,12 +21,14 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/*', (req, res) => res.sendFile(path.join(__dirname, 'public/index.html')));
+
 app.use('/auth', authRouter);
 
 // Auth Middleware
 app.use('/app', (req, res, next) => {
   var token = req.headers['access-token'];
+  console.log(token);
+
   if (!token) {
     res.status(401).send({
       result: 'error',
@@ -40,6 +42,7 @@ app.use('/app', (req, res, next) => {
           message: 'Failed to authenticate token.'
         });
       }
+
       // User authenticated, do the stuff
       next();
     });
@@ -47,7 +50,7 @@ app.use('/app', (req, res, next) => {
 });
 
 app.use('/app/todos', todosRouter);
-
+app.get('/*', (req, res) => res.sendFile(path.join(__dirname, 'public/index.html')));
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));

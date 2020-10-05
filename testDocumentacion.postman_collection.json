@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "7213fe26-03af-4969-a166-74118e1d3f53",
+		"_postman_id": "0e0f4376-3cb8-4d53-a31a-dc3b6a29fdc7",
 		"name": "testDocumentacion",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -9,17 +9,23 @@
 			"name": "listar",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MDE5MzQwOTQsImV4cCI6MTYwMjAyMDQ5NH0.LXvL283oKvlMCPrFIWzQRQIFRxoyKX-Q6iVGsi3ZLFY",
+						"type": "text"
+					}
+				],
 				"url": {
-					"raw": "http://localhost:3000/todos/",
+					"raw": "http://localhost:3000/app/todos",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"todos",
-						""
+						"app",
+						"todos"
 					]
 				}
 			},
@@ -29,15 +35,22 @@
 			"name": "getById",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MDE5MzQwOTQsImV4cCI6MTYwMjAyMDQ5NH0.LXvL283oKvlMCPrFIWzQRQIFRxoyKX-Q6iVGsi3ZLFY",
+						"type": "text"
+					}
+				],
 				"url": {
-					"raw": "http://localhost:3000/todos/1",
+					"raw": "http://localhost:3000/app/todos/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
+						"app",
 						"todos",
 						"1"
 					]
@@ -49,17 +62,31 @@
 			"name": "delete",
 			"request": {
 				"method": "DELETE",
-				"header": [],
+				"header": [
+					{
+						"key": "access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MDE5MzQwOTQsImV4cCI6MTYwMjAyMDQ5NH0.LXvL283oKvlMCPrFIWzQRQIFRxoyKX-Q6iVGsi3ZLFY",
+						"type": "text"
+					}
+				],
 				"url": {
-					"raw": "http://localhost:3000/todos/1",
+					"raw": "http://localhost:3000/app/todos/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
+						"app",
 						"todos",
 						"1"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
 					]
 				}
 			},
@@ -69,7 +96,13 @@
 			"name": "create",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MDE5MzQwOTQsImV4cCI6MTYwMjAyMDQ5NH0.LXvL283oKvlMCPrFIWzQRQIFRxoyKX-Q6iVGsi3ZLFY",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "urlencoded",
 					"urlencoded": [
@@ -86,13 +119,14 @@
 					]
 				},
 				"url": {
-					"raw": "http://localhost:3000/todos/",
+					"raw": "http://localhost:3000/app/todos/",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
+						"app",
 						"todos",
 						""
 					]

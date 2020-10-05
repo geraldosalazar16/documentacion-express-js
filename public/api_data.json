@@ -90,13 +90,39 @@
   },
   {
     "type": "post",
-    "url": "/app/todos/id",
+    "url": "/app/todos",
     "title": "Inserta un nuevo TODO",
     "name": "Crear",
     "group": "Todo",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "access-token",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "nombre",
+            "description": "<p>Nombre</p>"
+          }
+        ]
+      }
+    },
     "sampleRequest": [
       {
-        "url": "http://localhost:3000/app/todos/id"
+        "url": "http://localhost:3000/app/todos"
       }
     ],
     "success": {
@@ -159,13 +185,39 @@
   },
   {
     "type": "put",
-    "url": "/app/todos/id",
+    "url": "/app/todos/:id",
     "title": "Modifica un TODO por el id",
     "name": "Editar",
     "group": "Todo",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "access-token",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "nombre",
+            "description": "<p>Nombre</p>"
+          }
+        ]
+      }
+    },
     "sampleRequest": [
       {
-        "url": "http://localhost:3000/app/todos/id"
+        "url": "http://localhost:3000/app/todos/1"
       }
     ],
     "success": {
@@ -228,13 +280,26 @@
   },
   {
     "type": "delete",
-    "url": "/app/todos/id",
+    "url": "/app/todos/:id",
     "title": "Elimina un TODO por el id",
     "name": "Editar",
     "group": "Todo",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "access-token",
+            "description": ""
+          }
+        ]
+      }
+    },
     "sampleRequest": [
       {
-        "url": "http://localhost:3000/app/todos/id"
+        "url": "http://localhost:3000/app/todos/1"
       }
     ],
     "success": {
@@ -297,13 +362,26 @@
   },
   {
     "type": "get",
-    "url": "/app/todos/id",
+    "url": "/app/todos/:id",
     "title": "Obtener un TODO por su id",
     "name": "GetbyId",
     "group": "Todo",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "access-token",
+            "description": ""
+          }
+        ]
+      }
+    },
     "sampleRequest": [
       {
-        "url": "http://localhost:3000/app/todos/id"
+        "url": "http://localhost:3000/app/todos/1"
       }
     ],
     "success": {
@@ -366,13 +444,26 @@
   },
   {
     "type": "get",
-    "url": "/app/todos/",
+    "url": "/app/todos",
     "title": "Obtener el listado de TODOS",
     "name": "Listar",
     "group": "Todo",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "access-token",
+            "description": ""
+          }
+        ]
+      }
+    },
     "sampleRequest": [
       {
-        "url": "http://localhost:3000/app/todos/"
+        "url": "http://localhost:3000/app/todos"
       }
     ],
     "success": {

@@ -17,7 +17,7 @@ const users = [
  *
  * @apiParam {String} nombre Nombre de usuario.
  * @apiParam {String} password Password del usuario.
- * 
+ *
  * @apiSampleRequest /auth
  *
  * @apiSuccess {Number} statusCode Codigo HTTP correspondiente al resultado.
@@ -31,7 +31,7 @@ const users = [
  *          "token": "absdpbasdhbfashdbfasdf"
  *        }
  *     }
- * 
+ *
  * @apiError {Number} statusCode Codigo HTTP correspondiente al resultado.
  * @apiError {String} message   Mensaje de error.
  * @apiErrorExample {json} Error-Response:
@@ -48,11 +48,13 @@ router.post('/', function (req, res, next) {
   const usuarioValido = users.find(user => {
     return user.nombre === nombre && user.password === password;
   });
+
   if (usuarioValido) {
     const token = jwt.sign({ id: users.id },
       process.env.APP_SECRET,
       { expiresIn: 86400 }
     );
+    console.log(token);
     const usuario = {
       id: usuarioValido.id,
       nombre: usuarioValido.nombre,
