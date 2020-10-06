@@ -138,7 +138,13 @@
 			"name": "edit",
 			"request": {
 				"method": "PUT",
-				"header": [],
+				"header": [
+					{
+						"key": "access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MDE5MzQwOTQsImV4cCI6MTYwMjAyMDQ5NH0.LXvL283oKvlMCPrFIWzQRQIFRxoyKX-Q6iVGsi3ZLFY",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "urlencoded",
 					"urlencoded": [
@@ -155,13 +161,14 @@
 					]
 				},
 				"url": {
-					"raw": "http://localhost:3000/todos/1",
+					"raw": "http://localhost:3000/app/todos/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
+						"app",
 						"todos",
 						"1"
 					]
